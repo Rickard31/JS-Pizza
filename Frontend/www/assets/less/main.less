@@ -1,3 +1,164 @@
 @mainColor: blue;
+@cartWidth: 260px;
+@upperPanelHeight: calc(~"2rem + 50px");
+@downLabelHeight: 90px;
+@labelMarginLeft: 15px;
 
 @import "pizza/pizza-card";
+
+.container {
+  margin-right: calc(@cartWidth ~"+ 25px");
+  z-index: 1;
+  text-align: center;
+}
+
+#upper-panel {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: calc(~"100% -" @cartWidth);
+  height: @upperPanelHeight;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  line-height: calc(@upperPanelHeight ~"/ 2");
+  padding-left: calc(@labelMarginLeft ~"+ 120px");
+  padding-right: 15px;
+  margin-right: calc(@cartWidth ~"+ 25px");
+
+  .row{
+    text-align: left;
+  }
+
+  .container {
+    //margin-right: 0;
+    z-index: 3;
+    text-align: left;
+  }
+}
+
+#upper-panel-first-line {
+  //display: inline-block;
+  box-sizing: border-box;
+  margin-right: 5px;
+  border-bottom: 1px solid lightgray;
+  color: lightgray;
+}
+
+#logo {
+  position: fixed;
+  //opacity: 1;
+  color: white;
+  top: 0px;
+  left: @labelMarginLeft;
+  background-color: #EA862E;
+  font-weight: 700;
+  z-index: 3;
+  width: 100px;
+  text-align: center;
+  height: @upperPanelHeight;
+  border: 0.5px solid #D16200;
+  border-top: 0;
+  padding-top: 10px;
+  line-height: 1.8em;
+}
+
+#upper-logo-img {
+  position: fixed;
+  top: calc(@upperPanelHeight ~"- 1px");
+  left: @labelMarginLeft;
+  transform: rotate(180deg);
+  z-index: 3;
+}
+
+#nav-menu {
+  line-height: 2rem;
+  padding-top: 5px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.caption {
+  display: inline-block;
+  margin: auto;
+}
+
+.align-center {
+  text-align: center;
+  display: inline-block;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.subtle-h3 {
+  h3 {
+    background-color: inherit;
+    margin-bottom: 1px;
+    color: black;
+    font-weight: 500;
+  }
+}
+
+.grey-note {
+  color: grey;
+  text-align: left;
+  font-size: 0.7em;
+}
+
+#down-label {
+  position: fixed;
+  color: white;
+  bottom: 0px;
+  left: @labelMarginLeft;
+  background-color: #EA862E;
+  font-weight: 700;
+  z-index: 3;
+  text-align: center;
+  height: @downLabelHeight;
+  width: 100px;
+  border: 0.5px solid #D16200;
+  border-bottom: 0;
+}
+
+#down-label-img {
+  position: fixed;
+  bottom: calc(@downLabelHeight ~"- 1px");
+  left: @labelMarginLeft;
+  //transform: rotate(180deg);
+  z-index: 3;
+  width: 100px;
+  height: 11px;
+}
+
+.margin-top-xl {
+  margin-top: @upperPanelHeight;
+}
+
+.circle {
+  min-width: 2rem;
+  min-height: 2rem;
+  border-radius: 500px;
+  text-align: center;
+  display: inline-block;
+  font-size: 0.9em;
+  line-height: 2rem;
+}
+
+.white-on-orange {
+  color: white;
+  background-color: orange;
+}
+
+.btn-default {
+  color: orange;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  #upper-panel-second-line{
+    display: none;
+  }
+
+  .border-bottom-xs{
+    border-bottom: 1px solid white;
+  }
+}
