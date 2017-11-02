@@ -1,9 +1,44 @@
-<div>
-    <%= pizza.title %> (<%= size %>)
-    <div>Ціна: <%= pizza[size].price %> грн.</div>
-    <div>
-        <button class="btn btn-danger minus">-</button>
-        <span class="label label-default"><%= quantity %></span>
-        <button class="btn btn-success plus">+</button>
+<%
+//var PizzaCart = require("ejs").require("../../Frontend/src/pizza/PizzaCart");
+function getSize() {
+    //console.log(pizza.size);
+    try {
+        if (pizza[size].size === pizza["small_size"].size) return " Мала ";
+    } catch (err) {
+        return " Велика ";
+    }
+    return " Велика ";
+}
+%>
+
+<div class="order-template">
+    <div class="pizza-title">
+        <%= pizza.title %>
+        (<%- getSize() %>
+        )
     </div>
+    <div class="stats-block">
+                        <span class="pizza-stats">
+                            <img class="icon" src="assets/images/size-icon.svg">
+                            <span><%= pizza[size].size %></span>
+                        </span>
+        <span class="pizza-stats">
+                            <img class="icon" src="assets/images/weight.svg">
+                            <span><%= pizza[size].weight %></span>
+                        </span>
+    </div>
+    <div class="amount-toggler-block">
+        <span class="price"><%= pizza[size].price %> грн</span>
+        <button type="button" class="btn btn-danger minus">
+            <span class="glyphicon glyphicon-minus"></span>
+        </button>
+        <span class="quantity"><%= quantity %></span>
+        <button type="button" class="btn btn-success plus">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <button type="button" class="btn btn-default remove">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+    <img class="pizza-logo" src="<%= pizza.icon %>">
 </div>

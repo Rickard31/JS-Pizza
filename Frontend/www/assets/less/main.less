@@ -1,164 +1,469 @@
-@mainColor: blue;
-@cartWidth: 260px;
-@upperPanelHeight: calc(~"2rem + 50px");
-@downLabelHeight: 90px;
-@labelMarginLeft: 15px;
+@textColor: rgba(12, 12, 12, 0.94);
+@warningColor: #f0ad4e;
+@pizzaCartWidth: 330px;
+@infoBarHeight: 90px;
+@smallScreens: ~"only screen and (max-width: 750px)";
 
 @import "pizza/pizza-card";
 
-.container {
-  margin-right: calc(@cartWidth ~"+ 25px");
-  z-index: 1;
-  text-align: center;
+body {
+  font-family: Vollkorn, Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  background-color: #fdffe7;
+  * {
+    color: @textColor;
+  }
 }
 
-#upper-panel {
+p {
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  color: lighten(@textColor, 10%);
+}
+
+button:focus {
+  outline: none !important;
+}
+
+#cart {
+  display: inline-block;
+  z-index: 100;
+  right: 0;
+  top: 0;
+  width: @pizzaCartWidth;
   position: fixed;
-  top: 0px;
-  left: 0px;
-  width: calc(~"100% -" @cartWidth);
-  height: @upperPanelHeight;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
-  line-height: calc(@upperPanelHeight ~"/ 2");
-  padding-left: calc(@labelMarginLeft ~"+ 120px");
-  padding-right: 15px;
-  margin-right: calc(@cartWidth ~"+ 25px");
+  background-color: white;
 
-  .row{
-    text-align: left;
+  .header {
+    height: @infoBarHeight;
+    position: relative;
+    text-align: center;
+
+    .outer {
+      width: 100%;
+      height: 50%;
+      position: absolute;
+      bottom: 10px;
+      .title-block {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+      .title-text {
+        font-size: 22px;
+      }
+
+      .amount-label span {
+        vertical-align: top;
+        font-size: 12px;
+      }
+
+      .btn-link {
+        font-size: 11px;
+        margin-left: 10px;
+        text-decoration: none;
+        color: #9b9b9b;
+      }
+    }
+
   }
 
-  .container {
-    //margin-right: 0;
-    z-index: 3;
-    text-align: left;
+  .action-block {
+    height: 100%;
+    box-shadow: -8px 0 8px -4px #c4c4c4;
+
+    .orders {
+      overflow: auto;
+      box-sizing: border-box;
+      background-color: #f3f3f3;
+      border-bottom: 1px solid #e1e1e1;
+
+      .order-template {
+        overflow: hidden;
+        position: relative;
+        border-bottom: 1px solid #e1e1e1;
+        div {
+          padding: 5px;
+          padding-left: 18px;
+        }
+
+        .pizza-logo {
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          top: 10px;
+          right: -50px;
+        }
+
+        .pizza-title {
+          font-size: 21px;
+          color: @titleColor;
+        }
+
+        .stats-block {
+          .pizza-stats {
+            padding-right: 10px;
+          }
+
+        }
+        .amount-toggler-block {
+          padding-top: 2px;
+          padding-bottom: 10px;
+          .price, .amount {
+            font-size: 14px;
+            font-weight: 700;
+            font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            margin-right: 10px;
+          }
+
+          .amount {
+            margin-left: 10px;
+          }
+          .btn {
+            padding-left: 0;
+            padding-right: 0;
+            width: 30px;
+            height: 30px;
+            //line-height: 30px;
+            border-radius: 50%;
+            text-align: center;
+
+            span {
+              color: white;
+            }
+          }
+          .btn-success {
+            padding-left: 2px;
+          }
+
+          .btn-default {
+            margin-left: 20px;
+            width: 31px;
+            height: 31px;
+            box-shadow: 0 -3px 8px 4px #eeeeee inset;
+            span {
+              color: @titleColor;
+            }
+          }
+        }
+      }
+    }
+
+    .summary {
+      position: relative;
+      margin-top: -2px;
+      height: 200px;
+
+      .order-sum {
+        display: inline-block;
+        width: 100%;
+        height: 25%;
+        position: absolute;
+        top: -20px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        background-color: white;
+        text-align: center;
+        border-top: 1px solid #e1e1e1;;
+
+        .outer {
+          width: 100%;
+          height: 60%;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+
+          span {
+            display: inline-block;
+            height: 100%;
+            font-size: 22px;
+            color: @textColor;
+            font-weight: 600;
+          }
+
+          .title {
+            position: absolute;
+            left: 8px;
+            span {
+              font-size: 18px;
+              vertical-align: bottom;
+            }
+
+          }
+
+          .number {
+            position: absolute;
+            right: 8px;
+          }
+        }
+
+      }
+
+      .order-button {
+        display: inline-block;
+        width: 82%;
+        height: 45px;
+        position: absolute;
+        top: 17%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        text-align: center;
+        background-color: darken(@warningColor, 5%);
+        border-color: darken(@warningColor, 12%);
+
+        span {
+          color: white;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+}
+
+.top-info-bar {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  height: @infoBarHeight;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+
+  .header-block {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 120px;
+    height: 100%;
+    width: 100%;
+    min-width: 70px;
+
+    .upper-header {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      //height: 50%;
+      border-bottom: lighten(@textColor, 60%) solid 1px;
+
+      .login-button {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding-right: 0;
+
+        .btn-warning {
+          background: darken(@warningColor, 5%);
+          border-color: darken(@warningColor, 10%);
+
+          &:hover {
+            background: darken(@warningColor, 10%);
+            border-color: darken(@warningColor, 5%);
+          }
+        }
+      }
+
+      div {
+        vertical-align: baseline;
+        display: inline-block;
+        color: lighten(@textColor, 60%);
+        //margin-left: 15px;
+        padding: 8px;
+      }
+
+      .hotline {
+        padding-left: 0;
+        font-size: 22px;
+      }
+
+      .working-time {
+        font-size: 13px;
+      }
+
+      .delivery-info {
+        font-size: 17px;
+      }
+    }
+
+    .lower-header {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+
+      .homepage {
+        text-decoration: none;
+        line-height: 1px;
+        vertical-align: bottom;
+        font-size: 17px;
+        color: white;
+      }
+    }
+
   }
 }
 
-#upper-panel-first-line {
-  //display: inline-block;
-  box-sizing: border-box;
+.container-fluid {
+  padding-right: @pizzaCartWidth + 20px;
+  max-width: 1250px;
+  min-width: 595px;
+  margin-top: 25px;
+}
+
+.navigation-bar {
+  margin-top: @pizzaCartWidth / 3;
+  text-align: center;
+  min-width: 295px;
+
+  .btn-filter {
+    background-color: transparent;
+    border: none;
+    color: @titleColor;
+    font-size: 16px;
+
+    &:hover {
+      background-color: rgba(224, 234, 230, 0.63);
+    }
+
+    &:focus {
+      background-color: lighten(@titleColor, 5%);
+      color: white;
+    }
+  }
+
+}
+
+.amount-label {
+  display: inline-block;
+  border-radius: 20px;
+  box-shadow: 0 -1px 0 #c56300 inset;
+  background-color: #f17f00;
+  margin-top: -10px;
+
+  text-align: center;
+  vertical-align: middle;
+
+  span {
+    color: white;
+    font-size: 14px;
+    padding: 5px 7px 5px 7px;
+    font-weight: 700;
+    vertical-align: middle;
+  }
+}
+
+.title-text {
   margin-right: 5px;
-  border-bottom: 1px solid lightgray;
-  color: lightgray;
+  font-size: 32px;
+  color: lighten(@textColor, 5%);
 }
 
-#logo {
+.visiting-block {
+  display: inline-block;
   position: fixed;
-  //opacity: 1;
-  color: white;
-  top: 0px;
-  left: @labelMarginLeft;
-  background-color: #EA862E;
-  font-weight: 700;
-  z-index: 3;
+  z-index: 5;
+  top: 0;
+  left: 8px;
   width: 100px;
-  text-align: center;
-  height: @upperPanelHeight;
-  border: 0.5px solid #D16200;
-  border-top: 0;
-  padding-top: 10px;
-  line-height: 1.8em;
-}
 
-#upper-logo-img {
-  position: fixed;
-  top: calc(@upperPanelHeight ~"- 1px");
-  left: @labelMarginLeft;
-  transform: rotate(180deg);
-  z-index: 3;
-}
+  .bottom-border {
+    transform: rotate(180deg);
+    margin-top: -11px;
+  }
 
-#nav-menu {
-  line-height: 2rem;
-  padding-top: 5px;
-  text-align: center;
-  margin-bottom: 10px;
-}
+  .content {
+    border: darken(#ea862e, 10%) solid 1px;
+    border-bottom: none;
+    text-align: center;
+    background: #ea862e;
+    padding: 14px;
 
-.caption {
-  display: inline-block;
-  margin: auto;
-}
+    .message-block {
+      display: inline-block;
+      width: 85%;
+      text-decoration: none;
 
-.align-center {
-  text-align: center;
-  display: inline-block;
-  padding-left: 5%;
-  padding-right: 5%;
-}
+      div {
+        color: white;
+        font-size: 24px;
+        font-weight: 600;
+      }
 
-.subtle-h3 {
-  h3 {
-    background-color: inherit;
-    margin-bottom: 1px;
-    color: black;
-    font-weight: 500;
+      div:first-child {
+        font-size: 20px;
+      }
+    }
   }
 }
 
-.grey-note {
-  color: grey;
-  text-align: left;
-  font-size: 0.7em;
-}
-
-#down-label {
-  position: fixed;
-  color: white;
-  bottom: 0px;
-  left: @labelMarginLeft;
-  background-color: #EA862E;
-  font-weight: 700;
-  z-index: 3;
-  text-align: center;
-  height: @downLabelHeight;
-  width: 100px;
-  border: 0.5px solid #D16200;
-  border-bottom: 0;
-}
-
-#down-label-img {
-  position: fixed;
-  bottom: calc(@downLabelHeight ~"- 1px");
-  left: @labelMarginLeft;
-  //transform: rotate(180deg);
-  z-index: 3;
-  width: 100px;
-  height: 11px;
-}
-
-.margin-top-xl {
-  margin-top: @upperPanelHeight;
-}
-
-.circle {
-  min-width: 2rem;
-  min-height: 2rem;
-  border-radius: 500px;
-  text-align: center;
+.discount-block {
   display: inline-block;
-  font-size: 0.9em;
-  line-height: 2rem;
-}
+  position: fixed;
+  z-index: 5;
+  bottom: 0;
+  left: 8px;
+  width: 100px;
 
-.white-on-orange {
-  color: white;
-  background-color: orange;
-}
-
-.btn-default {
-  color: orange;
-  border: 0;
-}
-
-@media (max-width: 768px) {
-  #upper-panel-second-line{
-    display: none;
+  .top-border {
+    margin-bottom: -9px;
   }
 
-  .border-bottom-xs{
-    border-bottom: 1px solid white;
+  .content {
+    border: darken(#ea862e, 15%) solid 1px;
+    border-top: none;
+    text-align: center;
+    background: #ea862e;
+    font-size: 16px;
+    padding: 7px;
+
+    .message-block {
+      display: inline-block;
+      width: 85%;
+      border-bottom: darken(#ea862e, 15%) dashed 2px;
+    }
+
+    .message-block, .amount {
+      color: white;
+      font-weight: 600;
+    }
+
+    .amount {
+      font-size: 20px;
+    }
+  }
+
+}
+
+footer {
+  padding: 4%;
+  border-top: 1px solid #e1e1e1;
+  background-color: white;
+  position: relative;
+  text-align: center;
+
+  p {
+    color: #7c7c7c;
+    line-height: 2em;
   }
 }
+
+@media @smallScreens {
+
+  .hotline {
+    font-size: 14px !important;
+    padding-bottom: 0 !important;
+    line-height: 1em;
+  }
+
+  .login-button {
+    transform: translateY(90%) !important;
+  }
+}
+
+
