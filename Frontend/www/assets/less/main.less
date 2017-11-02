@@ -7,7 +7,7 @@
 @import "pizza/pizza-card";
 
 body {
-  font-family: Vollkorn, Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Kurale', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 14px;
   background-color: #fdffe7;
   * {
@@ -16,7 +16,7 @@ body {
 }
 
 p {
-  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
   color: lighten(@textColor, 10%);
 }
 
@@ -326,15 +326,12 @@ button:focus {
     border: none;
     color: @titleColor;
     font-size: 16px;
+  }
 
-    &:hover {
-      background-color: rgba(224, 234, 230, 0.63);
-    }
-
-    &:focus {
-      background-color: lighten(@titleColor, 5%);
-      color: white;
-    }
+  .active{
+    background-color: @titleColor;
+    color: white;
+    font-size: 16px;
   }
 
 }
@@ -374,7 +371,7 @@ button:focus {
 
   .bottom-border {
     transform: rotate(180deg);
-    margin-top: -11px;
+    margin-top: -13px;
   }
 
   .content {

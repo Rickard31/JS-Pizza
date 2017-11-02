@@ -58,6 +58,11 @@ function initialiseCart() {
     Object.keys(localStorage).forEach(function (key) {
         Cart.push(JSON.parse(localStorage.getItem(key)));
     });
+    $(".outer").find(".btn-link").click(function () {
+        for (var i = Cart.length - 1; i >= 0; i--) {
+            removeFromCart(Cart[i]);
+        }
+    });
     updateCart();
 }
 
@@ -69,6 +74,7 @@ function getPizzaInCart() {
 function updateCart() {
     //Функція викликається при зміні вмісту кошика
     //Тут можна наприклад показати оновлений кошик на екрані та зберегти вміт кошика в Local Storage
+    var sum = 0;
 
     //Очищаємо старі піци в кошику
     $cart.html("");
@@ -105,8 +111,14 @@ function updateCart() {
         });
 
         $cart.append($node);
+
+        console.log("Item price - "+$node.find(".number").textContent);
+        //sum += cart_item.price;
     }
 
+    console.log("Sum - "+sum);
+    $(".summary").find(".number").html(sum+" грн");
+    $(".outer").find(".amount-label").html("<span>" + Cart.length + "</span>");
     Cart.forEach(showOnePizzaInCart);
 
 }

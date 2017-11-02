@@ -9,8 +9,8 @@ var Pizza_List = require('../Pizza_List');
 var $pizza_list = $("#pizza_list");
 
 $(".btn-filter").click(function () {
-    $(".active").prop('class', 'pizza-filter');
-    $(this).prop('class', 'pizza-filter active');
+    $(".active").prop('class', 'btn btn-warning btn-filter');
+    $(this).prop('class', 'btn btn-filter active');
     var filter = $(this).prop('id').substr(7);
     filterPizza(filter);
 });
@@ -42,12 +42,13 @@ function showPizzaList(list) {
 function filterPizza(filter) {
     //Масив куди потраплять піци які треба показати
     var pizza_shown = [];
-
     Pizza_List.forEach(function (pizza) {
         //Якщо піка відповідає фільтру
-        if (pizza.content[filter] || filter === 'all') pizza_shown.push(pizza);
-
-        //TODO: зробити фільтри
+        if(filter==="vega"  && pizza.content["meat"]===undefined && pizza.content["ocean"]===undefined){
+            //console.log(pizza.content["meat"]);
+            pizza_shown.push(pizza);
+        }
+        else if (pizza.content[filter] || filter === 'all') pizza_shown.push(pizza);
     });
 
     //Показати відфільтровані піци

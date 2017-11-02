@@ -28,7 +28,8 @@ function getSize() {
                         </span>
     </div>
     <div class="amount-toggler-block">
-        <span class="price"><%= pizza[size].price %> грн</span>
+
+        <span class="price"><%= (pizza[size].price * quantity) %> грн</span>
         <button type="button" class="btn btn-danger minus">
             <span class="glyphicon glyphicon-minus"></span>
         </button>
