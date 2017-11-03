@@ -75,10 +75,12 @@ function getPizzaInCart() {
     return Cart;
 }
 
+var sum = 0;
+
 function updateCart() {
     //Функція викликається при зміні вмісту кошика
     //Тут можна наприклад показати оновлений кошик на екрані та зберегти вміт кошика в Local Storage
-    var sum = 0;
+
 
     //Очищаємо старі піци в кошику
     $cart.html("");
@@ -119,13 +121,16 @@ function updateCart() {
         var cur_price = parseInt($node.find(".price").html().substr(0, $node.find(".price").html().length - 4));
         //console.log("Item price - " + cur_price);
         sum += cur_price;
-        $(".summary").find(".outer").find(".number").html(sum + " грн");
-
+        // console.log("Sum - " + sum);
     }
 
     $(".outer").find(".amount-label").html("<span>" + Cart.length + "</span>");
 
-    if(Cart.length>0) Cart.forEach(showOnePizzaInCart);
+    if (Cart.length > 0) {
+        Cart.forEach(showOnePizzaInCart);
+        $(".summary").find(".outer").find(".number").html(sum + " грн");
+        //$(".summary").find(".outer").find(".number").html(sum + " грн");
+    }
     else $(".summary").find(".outer").find(".number").html(0 + " грн");
 
 }
