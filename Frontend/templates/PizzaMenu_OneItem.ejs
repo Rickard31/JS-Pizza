@@ -37,8 +37,9 @@ function getIngredientsArray(pizza) {
 
         <div class="row">
 
-            <% if(pizza.small_size){ %>
+
             <div class="col-sm-6">
+                <% if(pizza.small_size){ %>
                 <div class="pizza-stats">
                     <img class="icon" src="assets/images/size-icon.svg">
                     <span><%= pizza.small_size.size %></span>
@@ -52,9 +53,9 @@ function getIngredientsArray(pizza) {
                 <div>
                     <button type="button" class="btn btn-warning buy-small">Купити</button>
                 </div>
-
+                <% } %>
             </div>
-            <% } if(pizza.big_size){  %>
+            <%  if(pizza.big_size){  %>
             <div class="col-sm-6">
                 <div class="pizza-stats">
                     <img class="icon" src="assets/images/size-icon.svg">

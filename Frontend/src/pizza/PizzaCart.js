@@ -58,12 +58,16 @@ function initialiseCart() {
     Object.keys(localStorage).forEach(function (key) {
         Cart.push(JSON.parse(localStorage.getItem(key)));
     });
+
+    //Clear-Cart button
     $(".outer").find(".btn-link").click(function () {
         for (var i = Cart.length - 1; i >= 0; i--) {
             removeFromCart(Cart[i]);
         }
     });
+
     updateCart();
+
 }
 
 function getPizzaInCart() {
@@ -112,14 +116,17 @@ function updateCart() {
 
         $cart.append($node);
 
-        console.log("Item price - "+$node.find(".number").textContent);
-        //sum += cart_item.price;
+        var cur_price = parseInt($node.find(".price").html().substr(0, $node.find(".price").html().length - 4));
+        //console.log("Item price - " + cur_price);
+        sum += cur_price;
+        $(".summary").find(".outer").find(".number").html(sum + " грн");
+
     }
 
-    console.log("Sum - "+sum);
-    $(".summary").find(".number").html(sum+" грн");
     $(".outer").find(".amount-label").html("<span>" + Cart.length + "</span>");
-    Cart.forEach(showOnePizzaInCart);
+
+    if(Cart.length>0) Cart.forEach(showOnePizzaInCart);
+    else $(".summary").find(".outer").find(".number").html(0 + " грн");
 
 }
 
