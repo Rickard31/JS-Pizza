@@ -22,6 +22,13 @@ function addToCart(pizza, size) {
         if (item.pizza.id === pizza.id && item.size === size) {
             exists = true;
             item.quantity++;
+            localStorage.removeItem(item.pizza.id + " " + item.size);
+            Cart.push({
+                pizza: pizza,
+                size: size,
+                quantity: item.quantity
+            });
+            return;
         }
     });
     if (!exists) {
@@ -36,7 +43,6 @@ function addToCart(pizza, size) {
             quantity: 1
         }));
     }
-
     //Оновити вміст кошика на сторінці
     updateCart();
 }
@@ -75,15 +81,17 @@ function getPizzaInCart() {
     return Cart;
 }
 
-var sum = 0;
-
 function updateCart() {
     //Функція викликається при зміні вмісту кошика
     //Тут можна наприклад показати оновлений кошик на екрані та зберегти вміт кошика в Local Storage
-
+<<<<<<< HEAD
+=======
+    var sum = 0;
+>>>>>>> parent of 06fe59b... Fixed cart summary
 
     //Очищаємо старі піци в кошику
     $cart.html("");
+    var sum = 0;
 
     //Онволення однієї піци
     function showOnePizzaInCart(cart_item) {
@@ -121,16 +129,13 @@ function updateCart() {
         var cur_price = parseInt($node.find(".price").html().substr(0, $node.find(".price").html().length - 4));
         //console.log("Item price - " + cur_price);
         sum += cur_price;
-        // console.log("Sum - " + sum);
+        $(".summary").find(".outer").find(".number").html(sum + " грн");
+
     }
 
     $(".outer").find(".amount-label").html("<span>" + Cart.length + "</span>");
 
-    if (Cart.length > 0) {
-        Cart.forEach(showOnePizzaInCart);
-        $(".summary").find(".outer").find(".number").html(sum + " грн");
-        //$(".summary").find(".outer").find(".number").html(sum + " грн");
-    }
+    if(Cart.length>0) Cart.forEach(showOnePizzaInCart);
     else $(".summary").find(".outer").find(".number").html(0 + " грн");
 
 }

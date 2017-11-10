@@ -12,11 +12,12 @@ $(".btn-filter").click(function () {
     $(".active").prop('class', 'btn btn-warning btn-filter');
     $(this).prop('class', 'btn btn-filter active');
     var filter = $(this).prop('id').substr(7);
+    console.log('Filters');
     filterPizza(filter);
 });
 
 function showPizzaList(list) {
-    $(".page-title-row").find(".amount-label").html("<span>"+list.length+"</span>");
+    $(".page-title-row").find(".amount-label").html("<span>" + list.length + "</span>");
     //Очищаємо старі піци в кошику
     $pizza_list.html("");
 
@@ -44,12 +45,21 @@ function filterPizza(filter) {
     var pizza_shown = [];
     Pizza_List.forEach(function (pizza) {
         //Якщо піка відповідає фільтру
-        if(filter==="vega"  && pizza.content["meat"]===undefined && pizza.content["ocean"]===undefined){
+        if (filter === "vega" && pizza.content["meat"] === undefined && pizza.content["ocean"] === undefined) {
             //console.log(pizza.content["meat"]);
             pizza_shown.push(pizza);
         }
         else if (pizza.content[filter] || filter === 'all') pizza_shown.push(pizza);
     });
+
+    var title = "temp";
+    if (filter === 'all') title = "Усі піци";
+    else if (filter === 'meat') title = "Мясні піци";
+    else if (filter === 'pineapple') title = 'Піци з ананасом';
+    else if (filter === 'mushroom') title = 'Піци з грибами';
+    else if (filter === 'ocean') title = 'Піци з морепродуктами';
+    else if (filter === 'vega') title = 'Вега піци';
+    $(".page-title-row").find(".title-text").html(title);
 
     //Показати відфільтровані піци
     showPizzaList(pizza_shown);
