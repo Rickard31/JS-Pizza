@@ -12,6 +12,7 @@
 
     <!-- LESS основний файл -->
     <link rel="stylesheet/less" type="text/css" href="assets/less/main.less"/>
+
     <!-- LESS JavaScript компілятор -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
 
@@ -22,7 +23,7 @@
         <div class="outer">
             <div class="title-block">
                 <span class="title-text">Замовлення</span>
-                <span class="amount-label"><span>3</span></span>
+                <span class="amount-label"><span>0</span></span>
             </div>
             <button type="button" class="btn btn-link">
                 Очистити замовлення
@@ -47,28 +48,20 @@
 <div class="top-info-bar">
     <div class="header-block" style="width: calc(100% - 470px)">
         <div class="upper-header">
-            <div class="hotline">(044)
-            222
-            5
-            222</div>
-            <div class="hidden-xs hidden-sm working-time">24
-            години
-
-            /
-            7
-            днів на тиждень</div>
+            <div class="hotline">(044)222-5-222</div>
+            <div class="hidden-xs hidden-sm working-time">24 години/7 днів на тиждень</div>
             <div class="visible-lg-inline-block delivery-info">Безкоштовна доставка піци</div>
             <div class="login-button"><a class="btn btn-warning" id="btn-login">Ввійти</a></div>
         </div>
         <div class="hidden-xs lower-header">
-            <span class="homepage">Піца</span>
+            <a href="index.html" class="homepage">Піца</a>
         </div>
     </div>
 </div>
 <div class="navigation-bar" style="width: calc(100% - 300px)">
     <div class="page-title-row">
         <span class="title-text">Усі піци</span>
-        <span class="amount-label"><span>19</span></span>
+        <span class="amount-label"><span>0</span></span>
     </div>
     <div class="categories">
         <button type="button" class="btn btn-filter active" id="filter-all">Усі</button>
@@ -88,14 +81,12 @@
 <div class="discount-block">
     <img class="top-border" src="assets/images/discount.svg">
     <div class="content">
-        <div class="message-block">ЦЬОГО ТИЖНЯ НА ВСЕ</div>
-        <div class="amount">-
-        20
-        %</div>
+        <span class="message-block">ЦЬОГО ТИЖНЯ НА ВСЕ</span>
+        <span class="amount">-20%</span>
     </div>
 </div>
 
-<div class="visiting-block">
+<a href="index.html" class="visiting-block">
     <div class="content">
         <div class="message-block">
             <div>PIZZA</div>
@@ -103,7 +94,7 @@
         </div>
     </div>
     <img class="bottom-border" src="assets/images/discount.svg">
-</div>
+</a>
 
 <footer style="width: calc(100% - 330px)">
     <p>
@@ -120,6 +111,7 @@
 
 <!--Own JavaScript -->
 <script type="text/javascript" src="assets/js/main.js"></script>
+<script type="text/javascript" src="Backend/main.js"></script>
 
 </body>
 </html>

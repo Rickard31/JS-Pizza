@@ -22,12 +22,12 @@ function addToCart(pizza, size) {
         if (item.pizza.id === pizza.id && item.size === size) {
             exists = true;
             item.quantity++;
-            localStorage.removeItem(item.pizza.id + " " + item.size);
-            Cart.push({
+            //localStorage.removeItem(item.pizza.id + " " + item.size);
+            localStorage.setItem(pizza.id + " " + size, JSON.stringify({
                 pizza: pizza,
                 size: size,
                 quantity: item.quantity
-            });
+            }));
             return;
         }
     });
@@ -84,10 +84,6 @@ function getPizzaInCart() {
 function updateCart() {
     //Функція викликається при зміні вмісту кошика
     //Тут можна наприклад показати оновлений кошик на екрані та зберегти вміт кошика в Local Storage
-<<<<<<< HEAD
-=======
-    var sum = 0;
->>>>>>> parent of 06fe59b... Fixed cart summary
 
     //Очищаємо старі піци в кошику
     $cart.html("");
@@ -102,7 +98,6 @@ function updateCart() {
         $node.find(".plus").click(function () {
             //Збільшуємо кількість замовлених піц
             cart_item.quantity += 1;
-
             //Оновлюємо відображення
             updateCart();
         });

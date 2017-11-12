@@ -3,19 +3,18 @@
 function getSize() {
     //console.log(pizza.size);
     try {
-        if (pizza[size].size === pizza["small_size"].size) return " Мала ";
+        if (pizza[size].size === pizza["small_size"].size) return "Мала";
     } catch (err) {
-        return " Велика ";
+        return "Велика";
     }
-    return " Велика ";
+    return "Велика";
 }
 %>
 
 <div class="order-template">
     <div class="pizza-title">
         <%= pizza.title %>
-        (<%- getSize() %>
-        )
+        (<%- getSize() %>)
     </div>
     <div class="stats-block">
                         <span class="pizza-stats">

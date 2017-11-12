@@ -14,8 +14,8 @@
 }
 .pizza-card .buy-big:hover,
 .pizza-card .buy-small:hover {
-  background-color: #e89014;
-  border-color: #d58512;
+  background-color: #b97310;
+  border-color: #a6670e;
 }
 .pizza-card .price {
   font-size: 34px;
@@ -124,6 +124,7 @@ button:focus {
 #cart .action-block .orders .order-template div {
   padding: 5px;
   padding-left: 18px;
+  /*padding-bottom : 0px;*/
 }
 #cart .action-block .orders .order-template .pizza-logo {
   position: absolute;
@@ -179,7 +180,7 @@ button:focus {
 }
 #cart .action-block .summary {
   position: relative;
-  margin-top: -2px;
+  margin-top: 0;
   height: 200px;
 }
 #cart .action-block .summary .order-sum {
@@ -187,7 +188,7 @@ button:focus {
   width: 100%;
   height: 25%;
   position: absolute;
-  top: -20px;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -230,7 +231,7 @@ button:focus {
   width: 82%;
   height: 45px;
   position: absolute;
-  top: 17%;
+  top: 22%;
   bottom: 0;
   left: 0;
   right: 0;
