@@ -1,7 +1,52 @@
 <% include common/header.ejs %>
 
-<div class="">
-    Main Page Content
+<div class="navigation-bar" style="width: calc(100% - 300px)">
+    <div class="page-title-row">
+        <span class="title-text">Усі піци</span>
+        <span class="amount-label"><span>0</span></span>
+    </div>
+    <div class="categories">
+        <button type="button" class="btn btn-filter active" id="filter-all">Усі</button>
+        <button type="button" class="btn btn-warning btn-filter" id="filter-meat">М'ясні</button>
+        <button type="button" class="btn btn-warning btn-filter" id="filter-pineapple">Із ананасами</button>
+        <button type="button" class="btn btn-warning btn-filter" id="filter-mushroom">Із грибами</button>
+        <button type="button" class="btn btn-warning btn-filter" id="filter-ocean">Із морепродуктами</button>
+        <button type="button" class="btn btn-warning btn-filter" id="filter-vega">Вега</button>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row" id="pizza_list">
+
+    </div>
+
+</div>
+
+<div id="cart">
+    <div class="header">
+        <div class="outer">
+            <div class="title-block">
+                <span class="title-text">Замовлення</span>
+                <span class="amount-label"><span>0</span></span>
+            </div>
+            <button type="button" class="btn btn-link">
+                Очистити замовлення
+            </button>
+        </div>
+    </div>
+    <div class="action-block">
+        <div class="orders" style="height: calc(100% - 200px)">
+
+        </div>
+        <div class="summary">
+            <div class="order-sum">
+                <div class="outer">
+                    <span class="title"><span>Сума замовлення</span></span>
+                    <span class="number">0 грн</span>
+                </div>
+            </div>
+            <a class="order-button btn btn-warning" href="order.html" id="btn-order"><span>Замовити</span></a>
+        </div>
+    </div>
 </div>
 
 <% include common/footer.ejs %>

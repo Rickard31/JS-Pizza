@@ -1,0 +1,86 @@
+<% include common/header_order.ejs %>
+
+<div class="contacts-form">
+    <div class="block-description">
+        <span>1. Контактні дані</span>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <form>
+                <div class="form-row name-group row">
+                    <label class="col-sm-2 control-label">Ім’я</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" id="inputName" placeholder="Ім’я Прізвище">
+                    </div>
+                </div>
+                <div class="form-row phone-group row">
+                    <label class="col-sm-2 control-label">Телефон</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="number" id="inputPhone" placeholder="+380987654321">
+                    </div>
+                </div>
+                <div class="form-row address-group row">
+                    <label class="col-sm-2 control-label">Адреса</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" id="inputAdress" placeholder="Київ, вул. Спаська, 2">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-5 order-summary">
+            <div class=" bs-callout bs-callout-warning">
+                <h4>Інформація про замовлення</h4>
+                <p class="order-summery-time">
+                    <b>Приблизний час доставки:</b> невідомий
+                </p>
+                <p class="order-summery-adress">
+                    <b>Адреса доставки:</b> невідома
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group next-step-wrap">
+            <div class="next-step-width">
+                <button type="button" class="btn btn-warning btn-block next-step-button">
+                    Далі
+                    <i class="glyphicon glyphicon-chevron-right icon-white">
+                    </i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<img src="https://images.8tracks.com/cover/i/009/341/954/44854-7887.jpg?rect=0,0,500,500&q=98&fm=jpg&fit=max"
+     id="google-map">
+
+<div id="cart">
+    <div class="header">
+        <div class="outer">
+            <div class="title-block">
+                <span class="title-text">Замовлення</span>
+                <span class="amount-label"><span>0</span></span>
+            </div>
+            <button type="button" class="btn btn-link" style="visibility: hidden">
+                Очистити замовлення
+            </button>
+        </div>
+    </div>
+    <div class="action-block">
+        <div class="orders" style="height: calc(100% - 200px)">
+
+        </div>
+        <div class="summary">
+            <div class="order-sum">
+                <div class="outer">
+                    <span class="title"><span>Сума замовлення</span></span>
+                    <span class="number">0 грн</span>
+                </div>
+            </div>
+            <a class="btn order-button" href="/" id="btn-edit"><span>Редагувати замовлення</span></a>
+        </div>
+    </div>
+</div>
+
+<% include common/footer.ejs %>

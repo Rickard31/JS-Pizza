@@ -118,7 +118,6 @@ function updateCart() {
             //Оновлюємо відображення
             updateCart();
         });
-
         $cart.append($node);
 
         var cur_price = parseInt($node.find(".price").html().substr(0, $node.find(".price").html().length - 4));
@@ -130,8 +129,11 @@ function updateCart() {
 
     $(".outer").find(".amount-label").html("<span>" + Cart.length + "</span>");
 
-    if(Cart.length>0) Cart.forEach(showOnePizzaInCart);
-    else $(".summary").find(".outer").find(".number").html(0 + " грн");
+    if (Cart.length > 0) Cart.forEach(showOnePizzaInCart);
+    else {
+        $(".summary").find(".outer").find(".number").html(0 + " грн");
+        $cart.html("<div class='no-text-label'>Пусто в холодильнику?<br>Замовте піцу!</div >")
+    }
 
 }
 

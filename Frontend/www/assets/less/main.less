@@ -30,6 +30,7 @@ button:focus {
   right: 0;
   top: 0;
   width: @pizzaCartWidth;
+  height: 100%;
   position: fixed;
   background-color: white;
 
@@ -76,6 +77,13 @@ button:focus {
       box-sizing: border-box;
       background-color: #f3f3f3;
       border-bottom: 1px solid #e1e1e1;
+
+      .no-text-label {
+        margin-top: 30px;
+        font-size: 1.5rem;
+        width: 100%;
+        text-align: center;
+      }
 
       .order-template {
         overflow: hidden;
@@ -230,6 +238,8 @@ button:focus {
 
 }
 
+
+
 .top-info-bar {
   position: fixed;
   z-index: 5;
@@ -262,13 +272,13 @@ button:focus {
         padding-right: 0;
 
         .btn-warning {
-          background: darken(@warningColor, 5%);
-          border-color: darken(@warningColor, 10%);
+          background-image: linear-gradient(to bottom, #f0ad4e 0, #eb9316 100%);
+          border-color: #e38d13;
+        }
 
-          &:hover {
-            background: darken(@warningColor, 10%);
-            border-color: darken(@warningColor, 5%);
-          }
+        .btn-warning:hover {
+          background: linear-gradient(to bottom, darken(#f0ad4e, 10%) 0, darken(#eb9316, 10%) 100%);
+          border-color: darken(#e38d13, 5%);
         }
       }
 
@@ -319,7 +329,7 @@ button:focus {
 }
 
 .navigation-bar {
-  margin-top: @pizzaCartWidth / 3;
+  margin-top: @infoBarHeight + 20px;
   text-align: center;
   min-width: 295px;
 
@@ -330,7 +340,15 @@ button:focus {
     font-size: 16px;
   }
 
-  .active{
+  .btn-filter:hover{
+    background-color: lighten(lightgray, 10%);
+  }
+
+  .btn-filter.active:hover{
+    background-color: darken(@titleColor, 5%);
+  }
+
+  .active {
     background-color: @titleColor;
     color: white;
     font-size: 16px;

@@ -16,6 +16,7 @@ function configureEndpoints(app) {
     app.post('/api/create-order/', api.createOrder);
 
     //Сторінки
+
     //Головна сторінка
     app.get('/', pages.mainPage);
 
@@ -38,7 +39,7 @@ function startServer(port) {
     app.use(morgan('dev'));
 
     //Розбір POST запитів
-    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.urlencoded({extended: false}));
     app.use(bodyParser.json());
 
     //Налаштовуємо сторінки
@@ -46,7 +47,7 @@ function startServer(port) {
 
     //Запуск додатка за вказаним портом
     app.listen(port, function () {
-        console.log('My Application Running on http://localhost:'+port+'/');
+        console.log('My Application Running on http://localhost:' + port + '/');
     });
 }
 

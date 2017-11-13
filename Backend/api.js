@@ -12,6 +12,10 @@ exports.createOrder = function(req, res) {
     console.log("Creating Order", order_info);
 
     res.send({
+        order: order_info.order.toArray(),
+        name: order_info.name,
+        phone: order_info.phone,
+        address: order_info.address,
         success: true
     });
 };

@@ -1,0 +1,79 @@
+@import "main";
+
+body{
+  font-size: 14px !important;
+  line-height: 1.42857143 !important;
+}
+
+.contacts-form {
+  margin-top: @infoBarHeight + 40px;
+  padding-left: 30px;
+  padding-right: @pizzaCartWidth + 20px;
+
+  .block-description{
+    font-size: 20px;
+    padding-bottom: 10px;
+    text-align: left;
+  }
+
+  form{
+    padding: 5px;
+  }
+
+  .form-row {
+    margin-bottom: 15px;
+
+    .control-label{
+      padding-top: 7px;
+      margin-bottom: 0;
+      text-align: right;
+    }
+  }
+
+  .bs-callout{
+    padding: 20px;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    background-color: white;
+  }
+
+  .bs-callout-warning {
+    border-left-color: @warningColor !important;
+  }
+
+  .next-step-wrap {
+    float: right;
+    margin-right: 16px;
+    margin-top: 15px;
+    width: 110px;
+
+    .icon-white{
+      color: white;
+    }
+  }
+}
+
+#google-map{
+  padding-left: 30px;
+  padding-right: @pizzaCartWidth + 20px;
+  margin-bottom: 25px;
+  margin-top:10px;
+  height: 300px;
+  width: 100%;
+}
+
+#cart {
+  .order-button {
+    background-image: linear-gradient(to bottom, #fff 0, #e0e0e0 100%) !important;
+    border: 1px solid grey !important;
+    border-radius: 6px !important;
+
+    span {
+      margin-top: calc(50% - 0.5rem) !important;
+      color: black !important;
+      font-size: 20px;
+    }
+
+  }
+}
