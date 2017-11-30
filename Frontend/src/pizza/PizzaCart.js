@@ -98,6 +98,14 @@ function updateCart() {
         $node.find(".plus").click(function () {
             //Збільшуємо кількість замовлених піц
             cart_item.quantity += 1;
+
+            localStorage.setItem(cart_item.pizza.id + " " + cart_item.size, JSON.stringify({
+                pizza: cart_item.pizza,
+                size: cart_item.size,
+                quantity: cart_item.quantity
+            }));
+
+
             //Оновлюємо відображення
             updateCart();
         });
@@ -107,6 +115,13 @@ function updateCart() {
             if (cart_item.quantity === 1) removeFromCart(cart_item);
             else {
                 cart_item.quantity -= 1;
+
+                localStorage.setItem(cart_item.pizza.id + " " + cart_item.size, JSON.stringify({
+                    pizza: cart_item.pizza,
+                    size: cart_item.size,
+                    quantity: cart_item.quantity
+                }));
+
                 //Оновлюємо відображення
                 updateCart();
             }
@@ -129,8 +144,14 @@ function updateCart() {
 
     $(".outer").find(".amount-label").html("<span>" + Cart.length + "</span>");
 
-    if (Cart.length > 0) Cart.forEach(showOnePizzaInCart);
+    if (Cart.length > 0) {
+        $("#btn-order").attr('disabled', false);
+        $("#btn-order").attr('href', 'order.html');
+        Cart.forEach(showOnePizzaInCart);
+    }
     else {
+        $("#btn-order").attr('disabled', true);
+        $("#btn-order").attr('href', '/');
         $(".summary").find(".outer").find(".number").html(0 + " грн");
         $cart.html("<div class='no-text-label'>Пусто в холодильнику?<br>Замовте піцу!</div >")
     }

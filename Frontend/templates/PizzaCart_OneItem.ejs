@@ -1,7 +1,6 @@
 <%
 //var PizzaCart = require("ejs").require("../../Frontend/src/pizza/PizzaCart");
 function getSize() {
-    //console.log(pizza.size);
     try {
         if  (pizza[size].size === pizza["small_size"].size) return "Мала";
     } catch (err) {
@@ -29,14 +28,15 @@ function getSize() {
     <div class="amount-toggler-block">
 
         <span class="price"><%= (pizza[size].price * quantity) %> грн</span>
-        <button type="button" class="btn btn-danger minus">
+        <button type="button" class="btn btn-danger minus order-invisible">
             <span class="glyphicon glyphicon-minus"></span>
         </button>
-        <span class="quantity"><%= quantity %></span>
-        <button type="button" class="btn btn-success plus">
+        <span class="amount main-page-invisible"><%= quantity %> піци</span>
+        <span class="amount order-invisible"><%= quantity %></span>
+        <button type="button" class="btn btn-success plus order-invisible">
             <span class="glyphicon glyphicon-plus"></span>
         </button>
-        <button type="button" class="btn btn-default remove">
+        <button type="button" class="btn btn-default remove order-invisible">
             <span class="glyphicon glyphicon-remove"></span>
         </button>
     </div>

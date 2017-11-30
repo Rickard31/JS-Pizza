@@ -16,7 +16,6 @@ function configureEndpoints(app) {
     app.post('/api/create-order/', api.createOrder);
 
     //Сторінки
-
     //Головна сторінка
     app.get('/', pages.mainPage);
 
