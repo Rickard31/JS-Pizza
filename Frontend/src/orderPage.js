@@ -1,4 +1,4 @@
-const point = ($("#google-map").length>0)? new google.maps.LatLng(50.464379, 30.519131):null;
+const point = ($("#google-map").length > 0) ? new google.maps.LatLng(50.464379, 30.519131) : null;
 var map;
 var marker;
 var homeMarker;
@@ -6,82 +6,89 @@ var homeMarker;
 var API = require('./API');
 var PizzaCart = require('./pizza/PizzaCart');
 
-//TODO: Fix callbacks
 function initialize() {
-    //Тут починаємо працювати з картою
-    var mapProp = {
-        center: point,
-        zoom: 15
-    };
-    var html_element = document.getElementById("google-map");
-    map = new google.maps.Map(html_element, mapProp);
-    //Карта створена і показана
+    if ($("#google-map").length > 0) {
+        //Тут починаємо працювати з картою
+        var mapProp = {
+            center: point,
+            zoom: 15
+        };
+        var html_element = document.getElementById("google-map");
+        map = new google.maps.Map(html_element, mapProp);
+        //Карта створена і показана
 
-    marker = new google.maps.Marker({
-        position: point,
-        map: map,
-        icon: "assets/images/map-icon.png"
-    });
+        marker = new google.maps.Marker({
+            position: point,
+            map: map,
+            icon: "assets/images/map-icon.png"
+        });
 
-    homeMarker = new google.maps.Marker({
-        position: point,
-        map: null,
-        icon: "assets/images/home-icon.png"
-    })
+        homeMarker = new google.maps.Marker({
+            position: point,
+            map: null,
+            icon: "assets/images/home-icon.png"
+        })
 
-    google.maps.event.addListener(map, 'click', function (me) {
-        var coordinates = me.latLng;
+        google.maps.event.addListener(map, 'click', function (me) {
+            var coordinates = me.latLng;
 
-        homeMarker.setMap(map);
-        homeMarker.setPosition(coordinates);
+            homeMarker.setMap(map);
+            homeMarker.setPosition(coordinates);
 
-        setAdress(coordinates, logError);
+            setAdress(coordinates, logError);
 
-        console.log(calculateRoute(point, coordinates, logError));
+            console.log(calculateRoute(point, coordinates, logError));
 
-        adressOk = true;
-        $(".address-group").removeClass("false-input");
-        //$(".order-summery-time").html("<b>Приблизний час доставки: </b>" + calculateRoute(point, coordinates, logError));
-    });
+            adressOk = true;
+            $(".address-group").removeClass("false-input");
+            //$(".order-summery-time").html("<b>Приблизний час доставки: </b>" + calculateRoute(point, coordinates, logError));
+        });
 
-    $("#proceed-button").click(function () {
-        //console.log()
-        //geocodeAddress($("#inputAdress").val(), logError);
-        validateName();
-        validatePhone();
-        validateAdress();
+        //var buttonClicked = false;
+        $("#proceed-button").unbind().click(function () {
+            //console.log()
+            //geocodeAddress($("#inputAdress").val(), logError);
+            validateName();
+            validatePhone();
+            validateAdress();
+            //console.log("Click");
 
-        if(nameOk && phoneOk && adressOk){
-            var order = {
-                name: $("#inputName").val(),
-                phone: $("#inputPhone").val(),
-                adress: $("#inputAdress").val(),
-                pizzas: PizzaCart.getPizzaInCart()
-            }
-            API.createOrder(order,function(err,server_data){
-                if(err){
-                    alert("Сталася помилка");
-                    return callback(err);
+            if (nameOk && phoneOk && adressOk) {
+                console.log("Valid");
+                //buttonClicked = true;
+                var order = {
+                    name: $("#inputName").val(),
+                    phone: $("#inputPhone").val(),
+                    address: $("#inputAdress").val(),
+                    order: PizzaCart.getPizzaInCart()
                 }
-                LiqPayCheckout.init({
-                    data:	server_data.data,//"Дані...",
-                    signature:	server_data.signature,//"Підпис...",
-                    embedTo:	"#liqpay",
-                    mode:	"popup"	//	embed	||	popup
-                }).on("liqpay.callback",	function(data){
-                    console.log(data.status);
-                    console.log(data);
-                }).on("liqpay.ready",	function(data){
-                    //	ready
-                }).on("liqpay.close",	function(data){
-                    //	close
+                API.createOrder(order, function (err, server_data) {
+                    if (err) {
+                        alert("Error occured");
+                        return callback(err);
+                    }
+                    console.log(server_data.data);
+                    LiqPayCheckout.init({
+                        data: server_data.data,//"Дані...",
+                        signature: server_data.signature,//"Підпис...",
+                        embedTo: "#liqpay",
+                        mode: "popup"	//	embed	||	popup
+                    }).on("liqpay.callback", function (data) {
+                        console.log(data.status);
+                        console.log(data);
+                    }).on("liqpay.ready", function (data) {
+                        console.log("liqpay.ready");
+                        //	ready
+                    }).on("liqpay.close", function (data) {
+                        //	close
+                    });
                 });
-            });
-        }
-    })
+            }
+        })
+    }
 }
 
-var geocoder = ($("#google-map").length>0)? new google.maps.Geocoder():null;
+var geocoder = ($("#google-map").length > 0) ? new google.maps.Geocoder() : null;
 
 function setAdress(latlng, callback) {
     //Модуль за роботу з адресою
@@ -93,12 +100,12 @@ function setAdress(latlng, callback) {
             $(".order-summery-adress").html("<b>Адреса доставки: </b>" + adress);
             callback(null, adress);
         } else {
-            callback(new Error("Can't find adress"));
+            callback(new Error("Can't find address"));
         }
     });
 }
 
-var directionsDisplay = ($("#google-map").length>0)? new google.maps.DirectionsRenderer():null;
+var directionsDisplay = ($("#google-map").length > 0) ? new google.maps.DirectionsRenderer() : null;
 
 function calculateRoute(A_latlng, B_latlng, callback) {
     var directionService = new google.maps.DirectionsService();
@@ -113,10 +120,7 @@ function calculateRoute(A_latlng, B_latlng, callback) {
             directionsDisplay.setOptions({suppressMarkers: true});
             directionsDisplay.setDirections(response);
             directionsDisplay.setMap(map);
-            //directions.start = null;
-            //directions.end = null;
             var leg = response.routes[0].legs[0];
-            //console.log(leg.duration.text);
             $(".order-summery-time").html("<b>Приблизний час доставки: </b>" + leg.duration.text);
             /*callback(null, {
                 duration: leg.duration
@@ -150,24 +154,24 @@ function logError(err, someRes) {
 }
 
 //Коли сторінка завантажилась
-if($("#google-map").length>0) google.maps.event.addDomListener(window, 'load', initialize);
+if ($("#google-map").length > 0) google.maps.event.addDomListener(window, 'load', initialize);
 
 var namePattern = /^[ІіЇїЁёа-яА-Яa-zA-Z\s]+$/;
 var phonePattern = /^[+]{0,1}\d{4,13}$/;
 var nameOk = false;
 var phoneOk = false;
-var adressOk = false;
+var adressOk = true;
 
-function validateName(){
-    if($("#inputName").val()==''){
+function validateName() {
+    if ($("#inputName").val() == '') {
         $(".name-group").find(".incorrect-input-warning").text("Name can't be empty");
         $(".name-group").addClass("false-input");
         nameOk = false;
-    } else{
-        if(namePattern.test($("#inputName").val())){
+    } else {
+        if (namePattern.test($("#inputName").val())) {
             nameOk = true;
             $(".name-group").removeClass("false-input");
-        } else{
+        } else {
             $(".name-group").find(".incorrect-input-warning").text("Введіть тільки власне ім’я, без цифр");
             $(".name-group").addClass("false-input");
             nameOk = false;
@@ -175,16 +179,16 @@ function validateName(){
     }
 }
 
-function validatePhone(){
-    if($("#inputPhone").val()==''){
+function validatePhone() {
+    if ($("#inputPhone").val() == '') {
         $(".phone-group").find(".incorrect-input-warning").text("Phone number can't be empty");
         $(".phone-group").addClass("false-input");
         phoneOk = false;
-    } else{
-        if(phonePattern.test($("#inputPhone").val())){
+    } else {
+        if (phonePattern.test($("#inputPhone").val())) {
             phoneOk = true;
             $(".phone-group").removeClass("false-input");
-        } else{
+        } else {
             $(".phone-group").find(".incorrect-input-warning").text("Введіть номер телефону у форматі +380 або почніть з 0");
             $(".phone-group").addClass("false-input");
             phoneOk = false;
@@ -192,13 +196,13 @@ function validatePhone(){
     }
 }
 
-function validateAdress(){
+function validateAdress() {
     var adress = $("#inputAdress").val();
-    if(adress==''){
+    if (adress == '') {
         $(".address-group").find(".incorrect-input-warning").text("Adress can't be empty");
         $(".address-group").addClass("false-input");
         adressOk = false;
-    } else{
+    } else {
         /*try{
             geocodeAddress(adress, logError);
             adressOk = true;
